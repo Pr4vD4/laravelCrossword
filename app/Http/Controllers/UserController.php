@@ -31,7 +31,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'username' => 'required|regex:/[а-яА-ЯёЁ0-9]/u|max:500',
+            'username' => 'required|regex:/[а-яА-ЯёЁ0-9a-z]/u|max:500',
             'password' => 'required|between:6,20|confirmed',
             'email' => 'required|unique:users|email:rfc,dns',
             'agree' => 'required'
@@ -39,9 +39,9 @@ class UserController extends Controller
 
         $user = new User();
 
-        $user->name=$request->username;
-        $user->email=$request->email;
-        $user->password=Hash::make($request->password);
+        $user->name = $request->username;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
 
         $user->save();
 
@@ -49,14 +49,15 @@ class UserController extends Controller
 
     }
 
-    public function auth(Request $request) {
+    public function auth(Request $request)
+    {
 
         $validation = $request->validate([
             'email' => 'required',
             'password' => 'required'
         ]);
         $user = User::query()->where('email', $request->email)->first();
-        if (Hash::check($request->password, $user->password)){
+        if (Hash::check($request->password, $user->password)) {
 
             Auth::login($user);
 
@@ -65,7 +66,8 @@ class UserController extends Controller
         return redirect()->route('user');
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();

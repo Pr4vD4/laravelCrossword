@@ -21,6 +21,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user', function () {
         return view('user');
     })->name('user');
+    Route::get('/make', function () {
+        return view('crossword.create_crossword');
+    })->name('create_crossword');
+    Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+    Route::post('/make/store', [\App\Http\Controllers\CrosswordController::class, 'store'])->name('store_crossword');
 });
 
 Route::group(['middleware' => ['guest']], function () {
@@ -34,7 +39,7 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 Route::post('/registration/save', [\App\Http\Controllers\UserController::class, 'store'])->name('registration');
-Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+
 
 
 
