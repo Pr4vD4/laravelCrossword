@@ -1,4 +1,14 @@
 .crossword-item {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border: black 1px solid;
     width: 25px;
     height: 25px;
+    transition: .1s;
+}
+
+.crossword-item-pressed {
+    transition: .1s;
+    background-color: black;
 }
