@@ -9,6 +9,7 @@
             <div class="container-fluid w-50">
                 <div class="input-group mb-5">
                     <span class="input-group-text">Field size</span>
+                    <input type="text" aria-label="Name Your crossword" class="form-control w-50" placeholder="Name Your crossword" name="name">
                     <input type="number" aria-label="X" class="form-control" placeholder="X" min="2" max="100" id="x" name="x">
                     <input type="number" aria-label="Y" class="form-control" placeholder="Y" min="2" max="100" id="y" name="y">
                     <button class="btn btn-outline-secondary" type="button" id="create-field-btn">Create Filed</button>

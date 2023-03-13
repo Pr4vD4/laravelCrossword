@@ -33,7 +33,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Sign Up</a>
+                        <a class="nav-link" href="/registration">Sign Up</a>
                     </li>
                 @endguest
 

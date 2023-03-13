@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/registration', function () {
     return view('auth.registration');
 })->name('registration');
+
+Route::get('/', [\App\Http\Controllers\CrosswordController::class, 'index'])->name('home');
+Route::get('/crossword/{crossword}', [\App\Http\Controllers\CrosswordController::class, 'show'])->name('crossword_level');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/user', function () {
@@ -29,7 +32,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['middleware' => ['guest']], function () {
-
 
     Route::get('/login', function () {
         return view('auth.authorization');

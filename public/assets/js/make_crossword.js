@@ -23,7 +23,7 @@ $(document).ready(function () {
             $('#creating-field .row:last').append('<div class="crossword-item" style="border: solid 1px white">' + y_counter + '</div>');
             for (x_counter = 0; x_counter < x; x_counter++, counter++) {
                 $('#creating-field .row:last').append('<div class="crossword-item" id="' + counter + '"></div>\n' +
-                    '                    <input type="hidden" name="crossword-item[' + counter + ']" id="crossword-item-' + counter + '" value="0">');
+                    '                    <input type="hidden" name="crossword_item[' + counter + ']" id="crossword-item-' + counter + '" value="0">');
             }
         }
         $('#creating-field').append('<input type="submit" value="Send" className="mt-2">');

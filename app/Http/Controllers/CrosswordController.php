@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Crossword;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CrosswordController extends Controller
 {
+    private function form_matrix($array, $x)
+    {
+        return array_chunk($array, $x);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('index', ['crosswords' => Crossword::all()]);
     }
 
     /**
@@ -28,7 +34,18 @@ class CrosswordController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+
+
+        $crossword = new Crossword();
+
+        $matrix = $this->form_matrix($request->crossword_item, $request->x);
+
+        $crossword->name = $request->name;
+        $crossword->user_id = Auth::id();
+        $crossword->image = json_encode($matrix);
+
+        $crossword->save();
+        return redirect()->route('home');
     }
 
     /**
@@ -36,7 +53,7 @@ class CrosswordController extends Controller
      */
     public function show(Crossword $crossword)
     {
-        //
+        return view('crossword.crossword_level', ['crossword' => $crossword]);
     }
 
     /**
